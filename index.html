@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atmosferah Restaurant - Signature Showcase</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --card-bg: #141414;
+            --accent-color: #f3c614;
+            --text-color: #ffffff;
+            --text-muted: #888888;
+            --border-color: #222222;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            width: 100%;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-box {
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-box img {
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .brand-text h1 {
+            font-size: 0.95rem;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .brand-text p {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-live {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-live::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .icon-fullscreen {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        main {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .showcase-container {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            gap: 4rem;
+            width: 100%;
+        }
+
+        .content-side {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .category-tag {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .category-tag::before {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        .product-title {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-color);
+            min-height: 110px;
+            transition: opacity 0.3s ease;
+        }
+
+        .pricing-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .item-counter {
+            background-color: #1a1a1a;
+            border: 1px solid var(--border-color);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .controls-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .nav-btn {
+            background-color: #161616;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .nav-btn:hover {
+            border-color: var(--accent-color);
+        }
+
+        .progress-bar-container {
+            width: 250px;
+            height: 3px;
+            background-color: #222;
+            border-radius: 2px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background-color: var(--accent-color);
+            transition: width 0.1s linear;
+        }
+
+        .image-side {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .image-frame {
+            width: 380px;
+            height: 380px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            overflow: hidden;
+            background-color: #161616;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .featured-label {
+            margin-top: 1.2rem;
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border-top: 1px solid #161616;
+            width: 100%;
+        }
+
+        .developer-credit span {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        @media(max-width: 900px) {
+            .showcase-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+            .content-side {
+                align-items: center;
+            }
+            .product-title {
+                font-size: 2.2rem;
+                min-height: auto;
+            }
+            .image-frame {
+                width: 280px;
+                height: 280px;
+            }
+            header, footer {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-section">
+            <div class="logo-box">
+                <img src="Logo.png" alt="Atmosferah Logo">
+            </div>
+            <div class="brand-text">
+                <h1>ATMOSFERAH RESTAURANT</h1>
+                <p>Signature Dining & Complete Menu Showcase</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="btn-live">LIVE DIGITAL MENU</button>
+            <button class="icon-fullscreen" id="fullscreen-btn" title="Toggle Fullscreen">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="showcase-container">
+            <div class="content-side">
+                <div class="category-tag" id="cat-tag">ATMOSFERAH PLATTERS</div>
+                <div class="product-title" id="prod-title">Atmosferah Special Platter</div>
+                <div class="pricing-row">
+                    <div class="price" id="prod-price">RM 85.00</div>
+                    <div class="item-counter" id="prod-counter">#1 / 357</div>
+                </div>
+                <div class="controls-row">
+                    <button class="nav-btn" id="prev-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button class="nav-btn" id="next-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="image-side">
+                <div class="image-frame">
+                    <img id="prod-img" src="1.png" alt="Product Image">
+                </div>
+                <div class="featured-label">FEATURED DISH</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div id="footer-status">Display Mode • 357 Items Auto-Rotating Showcase (6s / Item)</div>
+        <div class="developer-credit">Designed & Developed by <span>Muhammad Shahzeb</span></div>
+    </footer>
+
+    <script>
+        const totalProducts = 357;
+        const intervalTime = 6000; // 6 seconds per item
+
+        // Categories array to dynamically cycle thematic names alongside products
+        const categories = [
+            "ATMOSFERAH PLATTERS", "SIGNATURE GRILLS", "SPECIALTY FAST FOOD", 
+            "CHEF'S SELECTION", "EXOTIC APPETIZERS", "GURMET BURGERS", "DELICIOUS MEALS"
+        ];
+
+        let currentIndex = 1;
+        let timer = null;
+        let progressInterval = null;
+        let startTime = null;
+
+        const imgElement = document.getElementById('prod-img');
+        const titleElement = document.getElementById('prod-title');
+        const priceElement = document.getElementById('prod-price');
+        const counterElement = document.getElementById('prod-counter');
+        const catTagElement = document.getElementById('cat-tag');
+        const progressFill = document.getElementById('progress-fill');
+        
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+        // Generate dynamic realistic price based on index
+        function getPriceForIndex(index) {
+            let base = 25 + ((index * 17) % 75);
+            return `RM ${base}.00`;
+        }
+
+        // Generate descriptive product title based on index
+        function getTitleForIndex(index) {
+            const types = ["Special Platter", "Signature Meal", "Deluxe Combo", "Crispy Delight", "Ultimate Flavor", "Chef Special", "Grilled Perfection"];
+            return `Atmosferah Item #${index} ${types[index % types.length]}`;
+        }
+
+        function updateDisplay(index) {
+            currentIndex = index;
+            
+            // Update image source sequentially from 1.png to 357.png
+            imgElement.src = `${currentIndex}.png`;
+            imgElement.alt = `Product ${currentIndex}`;
+
+            // Update text content
+            titleElement.textContent = getTitleForIndex(currentIndex);
+            priceElement.textContent = getPriceForIndex(currentIndex);
+            counterElement.textContent = `#${currentIndex} / ${totalProducts}`;
+            catTagElement.textContent = categories[(currentIndex - 1) % categories.length];
+
+            resetTimer();
+        }
+
+        function nextProduct() {
+            let nextIdx = currentIndex + 1;
+            if (nextIdx > totalProducts) {
+                nextIdx = 1; // Auto-restart from 1st product after 357
+            }
+            updateDisplay(nextIdx);
+        }
+
+        function prevProduct() {
+            let prevIdx = currentIndex - 1;
+            if (prevIdx < 1) {
+                prevIdx = totalProducts;
+            }
+            updateDisplay(prevIdx);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            clearInterval(progressInterval);
+            
+            startTime = Date.now();
+            
+            // Progress bar animation loop
+            progressInterval = setInterval(() => {
+                let elapsed = Date.now() - startTime;
+                let pct = (elapsed / intervalTime) * 100;
+                if (pct > 100) pct = 100;
+                progressFill.style.width = pct + '%';
+            }, 50);
+
+            // Auto advance timer after 6 seconds
+            timer = setInterval(() => {
+                nextProduct();
+            }, intervalTime);
+        }
+
+        // Event Listeners for manual navigation controls
+        nextBtn.addEventListener('click', () => {
+            nextProduct();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevProduct();
+        });
+
+        // Fullscreen toggle functionality
+        fullscreenBtn.addEventListener('click', () => {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        });
+
+        // Initialize first run
+        updateDisplay(1);
+    </script>
+</body>
+</html>

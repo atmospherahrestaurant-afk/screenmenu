@@ -334,10 +334,10 @@
     <main>
         <div class="showcase-container">
             <div class="content-side">
-                <div class="category-tag" id="cat-tag">ATMOSFERAH PLATTERS</div>
-                <div class="product-title" id="prod-title">Atmosferah Special Platter</div>
+                <div class="category-tag" id="cat-tag">CHICKEN PIECES</div>
+                <div class="product-title" id="prod-title">CHICKEN PIECES</div>
                 <div class="pricing-row">
-                    <div class="price" id="prod-price">RM 85.00</div>
+                    <div class="price" id="prod-price">RM 7.00</div>
                     <div class="item-counter" id="prod-counter">#1 / 357</div>
                 </div>
                 <div class="controls-row">
@@ -367,16 +367,387 @@
     </footer>
 
     <script>
-        const totalProducts = 357;
-        const intervalTime = 6000; // 6 seconds per item
-
-        // Categories array to dynamically cycle thematic names alongside products
-        const categories = [
-            "ATMOSFERAH PLATTERS", "SIGNATURE GRILLS", "SPECIALTY FAST FOOD", 
-            "CHEF'S SELECTION", "EXOTIC APPETIZERS", "GURMET BURGERS", "DELICIOUS MEALS"
+        const products = [
+            { category: "CHICKEN PIECES", name: "CHICKEN PIECES", price: "RM 7.00" },
+            { category: "PLATTERS (MR.C)", name: "CLASSIC ROLL PLATTER", price: "RM 28.00" },
+            { category: "PLATTERS (MR.C)", name: "SPECIAL ARABIC CHICKEN", price: "RM 40.00" },
+            { category: "SANDWICHES (MR.C)", name: "BBQ SANDWICH", price: "RM 8.00" },
+            { category: "SANDWICHES (MR.C)", name: "BREAST CHICKEN SANDWICH", price: "RM 12.00" },
+            { category: "SANDWICHES (MR.C)", name: "CLUB SANDWCH", price: "RM 8.00" },
+            { category: "SANDWICHES (MR.C)", name: "CRISPY CHEESE SANDWICH", price: "RM 8.00" },
+            { category: "DEALS (CHEEZIOUS)", name: "MR CHEEZIOUS BUDDY BURGER COMBO", price: "RM 20.00" },
+            { category: "DEALS (CHEEZIOUS)", name: "MR CHEEZIOUS BURGER FUSION COMBO", price: "RM 23.00" },
+            { category: "DEALS (CHEEZIOUS)", name: "MR CHEEZIOUS CHEEZY PARTY BOX", price: "RM 60.00" },
+            { category: "DEALS (CHEEZIOUS)", name: "MR CHEEZIOUS CHEZZY CRUNCH COMBO", price: "RM 23.00" },
+            { category: "DEALS (CHEEZIOUS)", name: "MR CHEEZIOUS FAMILY FEAST COMBO", price: "RM 60.00" },
+            { category: "DEALS (CHEEZIOUS)", name: "MR CHEEZIOUS SIGNATURE CHEESE MEAL", price: "RM 19.00" },
+            { category: "SHAWARMA (MR.C)", name: "MR CHEEZIOUS BEEF SHAWARMA", price: "RM 12.00" },
+            { category: "SHAWARMA (MR.C)", name: "MR CHEEZIOUS CHICKEN SHAWARMA", price: "RM 8.00" },
+            { category: "SHAWARMA (MR.C)", name: "MR CHEEZIOUS LAMB SHAWARMA", price: "RM 15.00" },
+            { category: "FRIES (CHEEZIOUS)", name: "CHEESE FRIES", price: "RM 12.00" },
+            { category: "FRIES (CHEEZIOUS)", name: "CHEESE MASALA FRIES", price: "RM 14.00" },
+            { category: "FRIES (CHEEZIOUS)", name: "DOUBLE CHEESE FRIES", price: "RM 16.00" },
+            { category: "FRIES (CHEEZIOUS)", name: "DOUBLE CHEESE MASALA FRIES", price: "RM 18.00" },
+            { category: "FRIES (CHEEZIOUS)", name: "MASALA FRIES", price: "RM 10.00" },
+            { category: "FRIES (CHEEZIOUS)", name: "NORMAL FRIES", price: "RM 7.00" },
+            { category: "NUGGETS (CHEEZIOUS)", name: "NUGGETS (5 PCS)", price: "RM 8.00" },
+            { category: "NUGGETS (CHEEZIOUS)", name: "NUGGETS (9 PCS)", price: "RM 14.00" },
+            { category: "BURGERS (CHEEZIOUS)", name: "BEEF BURGER", price: "RM 10.00" },
+            { category: "BURGERS (CHEEZIOUS)", name: "BEEF BURGER WITH FRIES", price: "RM 15.00" },
+            { category: "BURGERS (CHEEZIOUS)", name: "BEEF CHEESE BURGER", price: "RM 14.00" },
+            { category: "BURGERS (CHEEZIOUS)", name: "BEEF CHEESE BURGER WITH FRIES", price: "RM 19.00" },
+            { category: "BURGERS (CHEEZIOUS)", name: "CHICKEN BURGER", price: "RM 7.00" },
+            { category: "BURGERS (CHEEZIOUS)", name: "CHICKEN BURGER WITH FRIES", price: "RM 12.00" },
+            { category: "BURGERS (CHEEZIOUS)", name: "CHICKEN CHEESE BURGER", price: "RM 10.00" },
+            { category: "BURGERS (CHEEZIOUS)", name: "CHICKEN CHEESE BURGER WITH FRIES", price: "RM 17.00" },
+            { category: "BURGERS (CHEEZIOUS)", name: "ZINGER BURGER", price: "RM 8.00" },
+            { category: "BURGERS (CHEEZIOUS)", name: "ZINGER BURGER WITH FRIES", price: "RM 14.00" },
+            { category: "BURGERS (CHEEZIOUS)", name: "ZINGER CHEESE BURGER", price: "RM 13.00" },
+            { category: "BURGERS (CHEEZIOUS)", name: "ZINGER CHEESE BURGER WITH FRIES", price: "RM 18.00" },
+            { category: "PIZZA DEALS (MR.C)", name: "MR.CHEEZIOUS (REGULAR CHICKEN PIZZA WITH 2 CAN)", price: "RM 25.00" },
+            { category: "PIZZA DEALS (MR.C)", name: "MR.CHEEZIOUS (SMALL CHICKEN PIZZA WITH 1 CAN)", price: "RM 20.00" },
+            { category: "PIZZA DEALS (MR.C)", name: "MR.CHEEZOIUS (LARGE CHICKEN PZZA WITH 1 LITER)", price: "RM 35.00" },
+            { category: "PIZZAS (MR.C)", name: "AFGHANI PIZZA", price: "RM 20.00" },
+            { category: "PIZZAS (MR.C)", name: "BLACK PEPPER TIKKA", price: "RM 20.00" },
+            { category: "PIZZAS (MR.C)", name: "CHCIKEN TIKKA", price: "RM 20.00" },
+            { category: "PIZZAS (MR.C)", name: "CHICKEN MUSHROOM", price: "RM 22.00" },
+            { category: "PIZZAS (MR.C)", name: "CHICKEN TANDOORI", price: "RM 20.00" },
+            { category: "PIZZAS (MR.C)", name: "MR CHHEZIOUS SPECIAL", price: "RM 30.00" },
+            { category: "PIZZAS (MR.C)", name: "SAUSAGE PIZZA", price: "RM 18.00" },
+            { category: "PIZZAS (MR.C)", name: "VEGETABLE PIZZA", price: "RM 15.00" },
+            { category: "STARTERS (MR.C)", name: "ARABIC BEEF ROLLS", price: "RM 22.00" },
+            { category: "STARTERS (MR.C)", name: "ARABIC CHICKEN ROLLS", price: "RM 18.00" },
+            { category: "STARTERS (MR.C)", name: "CHEEZY STICKS", price: "RM 6.00" },
+            { category: "STARTERS (MR.C)", name: "FLAMING WINGS (3 PEICES)", price: "RM 15.00" },
+            { category: "STARTERS (MR.C)", name: "OVEN BAKED WINGS (3 FULL PIECE)", price: "RM 15.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "ATMOSFERAH SPECIAL BURGER", price: "RM 12.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "BEEF CHEESE SHAWARMA", price: "RM 18.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "BEEF DOUBLE CHEESE SHAWARMA", price: "RM 22.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "BEEF PIZZA", price: "RM 32.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "BEEF SHAWARMA", price: "RM 12.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "BEEF SPECIAL PIZZA", price: "RM 40.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "CHICKEN BURGER", price: "RM 6.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "CHICKEN CHEESE BURGER", price: "RM 8.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "CHICKEN CHEESE SHAWARMA", price: "RM 12.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "CHICKEN DOUBLE CHEESE SHAWARMA", price: "RM 16.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "CHICKEN PIZZA", price: "RM 25.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "CHICKEN SHAWARMA", price: "RM 8.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "CHICKEN SPECIAL PIZZA", price: "RM 35.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "LAMB CHEESE SHAWARMA", price: "RM 20.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "LAMB DOUBLE CHEESE SHAWARMA", price: "RM 24.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "LAMB PIZZA", price: "RM 35.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "LAMB SHAWARMA", price: "RM 15.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "LAMB SPECIAL PIZZA", price: "RM 45.00" },
+            { category: "PIZZA / BURGER / SHAWARMA SECTION", name: "ZINGER BURGER", price: "RM 7.00" },
+            { category: "ICE CREAM SECTION", name: "CARAMEL", price: "RM 6.50" },
+            { category: "ICE CREAM SECTION", name: "CHOCOLATE", price: "RM 6.50" },
+            { category: "ICE CREAM SECTION", name: "COFFEE", price: "RM 6.50" },
+            { category: "ICE CREAM SECTION", name: "KULFA", price: "RM 6.50" },
+            { category: "ICE CREAM SECTION", name: "MANGO", price: "RM 6.50" },
+            { category: "ICE CREAM SECTION", name: "OREO", price: "RM 6.50" },
+            { category: "ICE CREAM SECTION", name: "PINEAPPLE", price: "RM 6.50" },
+            { category: "ICE CREAM SECTION", name: "PISTA", price: "RM 6.50" },
+            { category: "ICE CREAM SECTION", name: "ROSE", price: "RM 6.50" },
+            { category: "ICE CREAM SECTION", name: "STRAWBERRY", price: "RM 6.50" },
+            { category: "ICE CREAM SECTION", name: "VANILLA", price: "RM 6.50" },
+            { category: "ICE CREAM FALOODA", name: "CARAMEL FALOODA", price: "RM 8.50" },
+            { category: "ICE CREAM FALOODA", name: "CHOCOLATE FALOODA", price: "RM 8.50" },
+            { category: "ICE CREAM FALOODA", name: "COFFEE FALOODA", price: "RM 8.50" },
+            { category: "ICE CREAM FALOODA", name: "KULFA FALOODA", price: "RM 8.50" },
+            { category: "ICE CREAM FALOODA", name: "MANGO FALOODA", price: "RM 8.50" },
+            { category: "ICE CREAM FALOODA", name: "OREO FALOODA", price: "RM 8.50" },
+            { category: "ICE CREAM FALOODA", name: "PINEAPPLE FALOODA", price: "RM 8.50" },
+            { category: "ICE CREAM FALOODA", name: "PISTA FALOODA", price: "RM 8.50" },
+            { category: "ICE CREAM FALOODA", name: "ROSE FALOODA", price: "RM 8.50" },
+            { category: "ICE CREAM FALOODA", name: "STRAWBERRY FALOODA", price: "RM 8.50" },
+            { category: "ICE CREAM FALOODA", name: "VANILLA FALOODA", price: "RM 8.50" },
+            { category: "DRINKS SECTION", name: "100 PLUS (CAN)", price: "RM 2.80" },
+            { category: "DRINKS SECTION", name: "BANDUNG", price: "RM 2.70" },
+            { category: "DRINKS SECTION", name: "BANDUNG LAICI", price: "RM 3.00" },
+            { category: "DRINKS SECTION", name: "BANDUNG LONGAN", price: "RM 3.00" },
+            { category: "DRINKS SECTION", name: "BARLEY", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "COCA COLA (CAN)", price: "RM 2.80" },
+            { category: "DRINKS SECTION", name: "GREEN TEA", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "GREEN TEA (CAN)", price: "RM 2.80" },
+            { category: "DRINKS SECTION", name: "GREEN TEA LEMON", price: "RM 2.70" },
+            { category: "DRINKS SECTION", name: "HORLICK", price: "RM 2.70" },
+            { category: "DRINKS SECTION", name: "ICE BLENDED MILO", price: "RM 5.00" },
+            { category: "DRINKS SECTION", name: "KOPI", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "KOPI C", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "KOPI O", price: "RM 1.60" },
+            { category: "DRINKS SECTION", name: "KOPI TARIK", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "LAICI", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "LEMON", price: "RM 1.80" },
+            { category: "DRINKS SECTION", name: "LEMON TEA", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "LIMAU MANTAK", price: "RM 1.80" },
+            { category: "DRINKS SECTION", name: "LONGAN", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "MILO", price: "RM 2.70" },
+            { category: "DRINKS SECTION", name: "MILO C", price: "RM 2.70" },
+            { category: "DRINKS SECTION", name: "MILO O", price: "RM 2.70" },
+            { category: "DRINKS SECTION", name: "MILO TABUR", price: "RM 5.00" },
+            { category: "DRINKS SECTION", name: "MILO TARIK", price: "RM 2.70" },
+            { category: "DRINKS SECTION", name: "MINERAL WATER", price: "RM 1.50" },
+            { category: "DRINKS SECTION", name: "NESCAFE", price: "RM 2.70" },
+            { category: "DRINKS SECTION", name: "NESCAFE C", price: "RM 2.70" },
+            { category: "DRINKS SECTION", name: "NESCAFE O", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "NESCAFE TARIK", price: "RM 2.70" },
+            { category: "DRINKS SECTION", name: "NESLO", price: "RM 3.00" },
+            { category: "DRINKS SECTION", name: "PEPSI (CAN)", price: "RM 2.80" },
+            { category: "DRINKS SECTION", name: "SOYA BEAN (CAN)", price: "RM 2.80" },
+            { category: "DRINKS SECTION", name: "SPRITE (CAN)", price: "RM 2.80" },
+            { category: "DRINKS SECTION", name: "SUNDROP (CAN)", price: "RM 2.80" },
+            { category: "DRINKS SECTION", name: "TEA BUNGA (CAN)", price: "RM 2.80" },
+            { category: "DRINKS SECTION", name: "TEH C", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "TEH C PENG SPECIAL", price: "RM 2.90" },
+            { category: "DRINKS SECTION", name: "TEH HONEY", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "TEH KUNDUR", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "TEH O", price: "RM 1.60" },
+            { category: "DRINKS SECTION", name: "TEH O LIMAO", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "TEH TARIK", price: "RM 2.50" },
+            { category: "DRINKS SECTION", name: "WHEAT GRASS C", price: "RM 2.70" },
+            { category: "DRINKS SECTION", name: "ZAPPLE (CAN)", price: "RM 2.80" },
+            { category: "BBQ / KEBAB / AYAM GORENG", name: "AYAM GORENG", price: "RM 6.00" },
+            { category: "BBQ / KEBAB / AYAM GORENG", name: "BEEF KEBAB", price: "RM 6.00" },
+            { category: "BBQ / KEBAB / AYAM GORENG", name: "CHICKEN BBQ", price: "RM 10.00" },
+            { category: "BBQ / KEBAB / AYAM GORENG", name: "CHICKEN KEBAB", price: "RM 5.00" },
+            { category: "BBQ / KEBAB / AYAM GORENG", name: "FISH BBQ", price: "RM 12.00" },
+            { category: "BBQ / KEBAB / AYAM GORENG", name: "IKAN TERUBUK", price: "RM 12.00" },
+            { category: "PAKISTANI KARAHI", name: "BEEF KARAHI 1KG", price: "RM 70.00" },
+            { category: "PAKISTANI KARAHI", name: "CHICKEN KARAHI 1KG", price: "RM 50.00" },
+            { category: "PAKISTANI KARAHI", name: "LAMB KARAHI 1KG", price: "RM 80.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "APPLE JUICE", price: "RM 9.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "BANANA MILK SHAKE", price: "RM 13.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "CARROT JUICE", price: "RM 10.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "CHOCOLATE MILK SHAKE", price: "RM 14.50" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "COCONUT", price: "RM 10.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "CUCUMBER JUICE", price: "RM 7.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "DATE MILK SHAKE", price: "RM 16.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "KIT KAT MILK SHAKE", price: "RM 14.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "MANGO JUICE", price: "RM 12.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "MANGO MILK SHAKE", price: "RM 14.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "NUTELLA MILK SHAKE", price: "RM 13.50" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "ORANGE JUICE", price: "RM 12.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "OREO MILK SHAKE", price: "RM 12.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "PINEAPPLE JUICE", price: "RM 12.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "PINEAPPLE MILK SHAKE", price: "RM 13.00" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "STRAWBERRY MILK SHAKE", price: "RM 14.50" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "VANILLA MILK SHAKE", price: "RM 13.50" },
+            { category: "JUICES / MILK SHAKE SECTION", name: "WATERMELON JUICE", price: "RM 10.00" },
+            { category: "PAKISTANI PARATA", name: "ALO BEEF CHEESE PARATA", price: "RM 23.00" },
+            { category: "PAKISTANI PARATA", name: "ALO BEEF PARATA", price: "RM 18.00" },
+            { category: "PAKISTANI PARATA", name: "ALO CHEESE PARATA", price: "RM 10.00" },
+            { category: "PAKISTANI PARATA", name: "ALO CHICKEN CHEESE PARATA", price: "RM 20.00" },
+            { category: "PAKISTANI PARATA", name: "ALO CHICKEN PARATA", price: "RM 15.00" },
+            { category: "PAKISTANI PARATA", name: "ALO LAMB CHEESE PARATA", price: "RM 25.00" },
+            { category: "PAKISTANI PARATA", name: "ALO LAMB PARATA", price: "RM 20.00" },
+            { category: "PAKISTANI PARATA", name: "ALO PARATA", price: "RM 6.00" },
+            { category: "PAKISTANI PARATA", name: "CHEESE PARATA", price: "RM 9.00" },
+            { category: "PAKISTANI PARATA", name: "PAKISTANI PARATA", price: "RM 3.50" },
+            { category: "KUEH TIAW GORENG SECTION", name: "KUEH TIAW GORENG AYAM", price: "RM 10.00" },
+            { category: "KUEH TIAW GORENG SECTION", name: "KUEH TIAW GORENG AYAM TELUR MATA", price: "RM 12.00" },
+            { category: "KUEH TIAW GORENG SECTION", name: "KUEH TIAW GORENG BIASA", price: "RM 6.00" },
+            { category: "KUEH TIAW GORENG SECTION", name: "KUEH TIAW GORENG DAGING", price: "RM 12.00" },
+            { category: "KUEH TIAW GORENG SECTION", name: "KUEH TIAW GORENG DAGING TELUR MATA", price: "RM 14.00" },
+            { category: "KUEH TIAW GORENG SECTION", name: "KUEH TIAW GORENG KAMBING", price: "RM 14.00" },
+            { category: "KUEH TIAW GORENG SECTION", name: "KUEH TIAW GORENG KAMBING TELUR MATA", price: "RM 16.00" },
+            { category: "KUEH TIAW GORENG SECTION", name: "KUEH TIAW GORENG MAMA", price: "RM 10.00" },
+            { category: "KUEH TIAW GORENG SECTION", name: "KUEH TIAW GORENG PATAYAH", price: "RM 12.00" },
+            { category: "KUEH TIAW GORENG SECTION", name: "KUEH TIAW GORENG SEAFOOD TELUR", price: "RM 15.00" },
+            { category: "KUEH TIAW GORENG SECTION", name: "KUEH TIAW GORENG TELUR MATA", price: "RM 8.00" },
+            { category: "MEE KOLOK GORENG SECTION", name: "MEE KOLOK GORENG AYAM", price: "RM 10.00" },
+            { category: "MEE KOLOK GORENG SECTION", name: "MEE KOLOK GORENG AYAM TELUR MATA", price: "RM 12.00" },
+            { category: "MEE KOLOK GORENG SECTION", name: "MEE KOLOK GORENG BIASA", price: "RM 6.00" },
+            { category: "MEE KOLOK GORENG SECTION", name: "MEE KOLOK GORENG DAGING", price: "RM 12.00" },
+            { category: "MEE KOLOK GORENG SECTION", name: "MEE KOLOK GORENG DAGING TELUR MATA", price: "RM 14.00" },
+            { category: "MEE KOLOK GORENG SECTION", name: "MEE KOLOK GORENG KAMBING", price: "RM 14.00" },
+            { category: "MEE KOLOK GORENG SECTION", name: "MEE KOLOK GORENG KAMBING TELUR MATA", price: "RM 16.00" },
+            { category: "MEE KOLOK GORENG SECTION", name: "MEE KOLOK GORENG MAMAK", price: "RM 10.00" },
+            { category: "MEE KOLOK GORENG SECTION", name: "MEE KOLOK GORENG PATAYAH", price: "RM 12.00" },
+            { category: "MEE KOLOK GORENG SECTION", name: "MEE KOLOK GORENG SEAFOOD TELUR", price: "RM 15.00" },
+            { category: "MEE KOLOK GORENG SECTION", name: "MEE KOLOK GORENG TELUR MATA", price: "RM 8.00" },
+            { category: "MEE HOON GORENG SECTION", name: "MEE HOON GORENG BIASA", price: "RM 6.00" },
+            { category: "MEE HOON GORENG SECTION", name: "MEE HOON GORENG AYAM", price: "RM 10.00" },
+            { category: "MEE HOON GORENG SECTION", name: "MEE HOON GORENG AYAM TELUR MATA", price: "RM 12.00" },
+            { category: "MEE HOON GORENG SECTION", name: "MEE HOON GORENG DAGING", price: "RM 12.00" },
+            { category: "MEE HOON GORENG SECTION", name: "MEE HOON GORENG DAGING TELUR MATA", price: "RM 14.00" },
+            { category: "MEE HOON GORENG SECTION", name: "MEE HOON GORENG KAMBING", price: "RM 14.00" },
+            { category: "MEE HOON GORENG SECTION", name: "MEE HOON GORENG KAMBING TELUR MATA", price: "RM 16.00" },
+            { category: "MEE HOON GORENG SECTION", name: "MEE HOON GORENG MAMA", price: "RM 10.00" },
+            { category: "MEE HOON GORENG SECTION", name: "MEE HOON GORENG PATAYAH", price: "RM 12.00" },
+            { category: "MEE HOON GORENG SECTION", name: "MEE HOON GORENG SEAFOOD TELUR", price: "RM 15.00" },
+            { category: "MEE HOON GORENG SECTION", name: "MEE HOON GORENG TELUR MATA", price: "RM 8.00" },
+            { category: "MEE GORENG SECTION", name: "MEE GORENG AYAM", price: "RM 10.00" },
+            { category: "MEE GORENG SECTION", name: "MEE GORENG AYAM TELUR MATA", price: "RM 12.00" },
+            { category: "MEE GORENG SECTION", name: "MEE GORENG BIASA", price: "RM 6.00" },
+            { category: "MEE GORENG SECTION", name: "MEE GORENG DAGING", price: "RM 12.00" },
+            { category: "MEE GORENG SECTION", name: "MEE GORENG DAGING TELUR MATA", price: "RM 14.00" },
+            { category: "MEE GORENG SECTION", name: "MEE GORENG KAMBING", price: "RM 14.00" },
+            { category: "MEE GORENG SECTION", name: "MEE GORENG KAMBING TELUR MATA", price: "RM 16.00" },
+            { category: "MEE GORENG SECTION", name: "MEE GORENG MAMAK", price: "RM 10.00" },
+            { category: "MEE GORENG SECTION", name: "MEE GORENG PATTAYA", price: "RM 12.00" },
+            { category: "MEE GORENG SECTION", name: "MEE GORENG SEAFOOD TELUR", price: "RM 15.00" },
+            { category: "MEE GORENG SECTION", name: "MEE GORENG TELUR MATA", price: "RM 8.00" },
+            { category: "MAGGI GORENG SECTION", name: "MAGGI GORENG AYAM", price: "RM 10.00" },
+            { category: "MAGGI GORENG SECTION", name: "MAGGI GORENG AYAM TELUR MATA", price: "RM 12.00" },
+            { category: "MAGGI GORENG SECTION", name: "MAGGI GORENG BIASA", price: "RM 6.00" },
+            { category: "MAGGI GORENG SECTION", name: "MAGGI GORENG DAGING", price: "RM 12.00" },
+            { category: "MAGGI GORENG SECTION", name: "MAGGI GORENG DAGING TELUR MATA", price: "RM 14.00" },
+            { category: "MAGGI GORENG SECTION", name: "MAGGI GORENG KAMBING", price: "RM 14.00" },
+            { category: "MAGGI GORENG SECTION", name: "MAGGI GORENG KAMBING TELUR MATA", price: "RM 16.00" },
+            { category: "MAGGI GORENG SECTION", name: "MAGGI GORENG MAMA", price: "RM 10.00" },
+            { category: "MAGGI GORENG SECTION", name: "MAGGI GORENG PATAYAH", price: "RM 12.00" },
+            { category: "MAGGI GORENG SECTION", name: "MAGGI GORENG SEAFOOD TELUR", price: "RM 15.00" },
+            { category: "MAGGI GORENG SECTION", name: "MAGGI GORENG TELUR MATA", price: "RM 8.00" },
+            { category: "FRENCH FRIES SECTION", name: "CHEESE FRIES", price: "RM 11.00" },
+            { category: "FRENCH FRIES SECTION", name: "DOUBLE CHEESE FRIES", price: "RM 15.00" },
+            { category: "FRENCH FRIES SECTION", name: "FRENCH FRIES", price: "RM 6.00" },
+            { category: "FRENCH FRIES SECTION", name: "FRENCH FRIES WITH 2 BBQ + COLA", price: "RM 27.00" },
+            { category: "FRENCH FRIES SECTION", name: "FRENCH FRIES WITH 2 CHICKEN KEBAB", price: "RM 15.00" },
+            { category: "FRENCH FRIES SECTION", name: "FRENCH FRIES WITH 3 PCS + FRIED CHICKEN + COLA", price: "RM 24.00" },
+            { category: "FRENCH FRIES SECTION", name: "FRENCH FRIES WITH 4 KEBAB", price: "RM 24.00" },
+            { category: "FRENCH FRIES SECTION", name: "FRENCH FRIES WITH BBQ+ 2 BEEF KEBAB + FRIED CHICKEN + PEPSI", price: "RM 35.00" },
+            { category: "FRENCH FRIES SECTION", name: "MASALA CHEESE FRIES", price: "RM 12.00" },
+            { category: "FRENCH FRIES SECTION", name: "MASALA DOUBLE CHEESE FRIES", price: "RM 17.00" },
+            { category: "FRENCH FRIES SECTION", name: "MASALA FRIES", price: "RM 8.00" },
+            { category: "CANAI SECTION", name: "CANAI BOOM CHEESE", price: "RM 8.00" },
+            { category: "CANAI SECTION", name: "CANAI BOOM DOUBLE CHEESE", price: "RM 14.00" },
+            { category: "CANAI SECTION", name: "CANAI CHOCOLATE", price: "RM 3.00" },
+            { category: "CANAI SECTION", name: "CANAI KOSONG", price: "RM 1.50" },
+            { category: "CANAI SECTION", name: "CANAI MILO", price: "RM 6.00" },
+            { category: "CANAI SECTION", name: "CANAI PISANG", price: "RM 3.00" },
+            { category: "CANAI SECTION", name: "CANAI PISANG CHEESE", price: "RM 10.00" },
+            { category: "CANAI SECTION", name: "CANAI PLANTA", price: "RM 3.00" },
+            { category: "CANAI SECTION", name: "CANAI SUSU", price: "RM 2.50" },
+            { category: "CANAI SECTION", name: "CANAI SUSU CHEESE", price: "RM 8.00" },
+            { category: "CANAI SECTION", name: "CANAI SUSU DOUBLE CHEESE", price: "RM 16.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR", price: "RM 3.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR AYAM", price: "RM 9.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR AYAM CHEESE", price: "RM 15.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR AYAM DOUBLE CHEESE", price: "RM 20.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR BAWANG", price: "RM 4.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR BEEF", price: "RM 11.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR BEEF CHEESE", price: "RM 17.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR BEEF DOUBLE CHEESE", price: "RM 22.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR CHEESE", price: "RM 10.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR CORNBEEF", price: "RM 12.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR CORNBEEF DOUBLE CHEESE", price: "RM 22.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR CORNBEEF CHEESE", price: "RM 17.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR LAMB", price: "RM 12.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR LAMB CHEESE", price: "RM 18.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR LAMB DOUBLE CHEESE", price: "RM 24.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR PLANTA", price: "RM 5.00" },
+            { category: "CANAI SECTION", name: "CANAI TELUR SARDINE", price: "RM 7.00" },
+            { category: "ARAB RICE SECTION", name: "ARAB RICE + BBQ + 2 CHICKEN KEBAB + 2 BEEF KEBAB", price: "RM 35.00" },
+            { category: "ARAB RICE SECTION", name: "ARAB RICE + FRIED CHICKEN + 4 KEBAB", price: "RM 30.00" },
+            { category: "ARAB RICE SECTION", name: "ARAB RICE WITH BBQ", price: "RM 17.00" },
+            { category: "ARAB RICE SECTION", name: "ARAB RICE WITH FRIED CHICKEN + 2 KEBAB + COLA", price: "RM 22.00" },
+            { category: "ARAB RICE SECTION", name: "ARAB RICE WITH FRIED CHICKEN + BEEF KEBAB + SPRITE", price: "RM 24.00" },
+            { category: "ARAB RICE SECTION", name: "ARAB RICE WITH MALAYI BOTI + SPRITE", price: "RM 20.00" },
+            { category: "TOMYUM SECTION", name: "TOMYUM AYAM", price: "RM 10.00" },
+            { category: "TOMYUM SECTION", name: "TOMYUM DAGING", price: "RM 13.00" },
+            { category: "TOMYUM SECTION", name: "TOMYUM KAMBING", price: "RM 17.00" },
+            { category: "TOMYUM SECTION", name: "TOMYUM SEAFOOD", price: "RM 17.00" },
+            { category: "SPECIAL DRINKS SECTION", name: "CHAI", price: "RM 3.00" },
+            { category: "SPECIAL DRINKS SECTION", name: "KOPI SUSU KAMBING", price: "RM 3.00" },
+            { category: "SPECIAL DRINKS SECTION", name: "MAHKOTA DEWA", price: "RM 3.00" },
+            { category: "SPECIAL DRINKS SECTION", name: "PAKISTANI TEA", price: "RM 3.00" },
+            { category: "SPECIAL DRINKS SECTION", name: "RADIX", price: "RM 3.00" },
+            { category: "SPECIAL DRINKS SECTION", name: "SUSU KAMBING", price: "RM 3.00" },
+            { category: "SPECIAL DRINKS SECTION", name: "TONGKAT ALI", price: "RM 3.00" },
+            { category: "SOUP SECTION", name: "NASI PUTIH", price: "RM 2.00" },
+            { category: "SOUP SECTION", name: "SOUP DAGING", price: "RM 15.00" },
+            { category: "SOUP SECTION", name: "SOUP KAMBING SHOULDER", price: "RM 18.00" },
+            { category: "SOUP SECTION", name: "SOUP LAMB SHANK", price: "RM 30.00" },
+            { category: "SOUP SECTION", name: "SOUP SAYUR", price: "RM 10.00" },
+            { category: "SOUP SECTION", name: "SOUP SAYUR AYAM CAMPER", price: "RM 14.00" },
+            { category: "SOUP SECTION", name: "SOUP TULANG", price: "RM 15.00" },
+            { category: "SIRAP SECTION", name: "ANGGUR", price: "RM 2.00" },
+            { category: "SIRAP SECTION", name: "JAGUNG", price: "RM 2.00" },
+            { category: "SIRAP SECTION", name: "KELADI", price: "RM 2.00" },
+            { category: "SIRAP SECTION", name: "LAICI", price: "RM 2.00" },
+            { category: "SIRAP SECTION", name: "ORANGE", price: "RM 2.00" },
+            { category: "SIRAP SECTION", name: "PISANG", price: "RM 2.00" },
+            { category: "SIRAP SECTION", name: "ROSE", price: "RM 2.00" },
+            { category: "SIRAP SECTION", name: "SARSI", price: "RM 2.00" },
+            { category: "SIRAP SECTION", name: "STRAWBERRY", price: "RM 2.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG AYAM", price: "RM 10.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG AYAM TELUR MATA", price: "RM 12.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG BIASA", price: "RM 6.50" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG CORNBEEF", price: "RM 14.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG DAGING", price: "RM 12.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG DAGING TELUR MATA", price: "RM 14.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG KAMBING", price: "RM 14.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG KAMBING TELUR MATA", price: "RM 16.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG KAMPUNG TELUR MATA", price: "RM 10.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG PATTAYA", price: "RM 12.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG SARDINE", price: "RM 9.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG SEAFOOD TELUR MATA", price: "RM 14.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG SOTONG TELUR MATA", price: "RM 12.00" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG TELUR MATA", price: "RM 8.50" },
+            { category: "NASI GORENG / FRIED RICE SECTION", name: "NASI GORENG UDANG TELUR MATA", price: "RM 12.00" },
+            { category: "NAN SECTION", name: "AFGHANI NAN", price: "RM 8.00" },
+            { category: "NAN SECTION", name: "ATMOSFERAH SP NAN CHEESE", price: "RM 20.00" },
+            { category: "NAN SECTION", name: "ATMOSFERAH SP NAN GARLIE CHEESE", price: "RM 23.00" },
+            { category: "NAN SECTION", name: "NAN CHEESE", price: "RM 10.00" },
+            { category: "NAN SECTION", name: "NAN CHEESE BEEF", price: "RM 18.00" },
+            { category: "NAN SECTION", name: "NAN CHEESE CHICKEN", price: "RM 17.00" },
+            { category: "NAN SECTION", name: "NAN DOUBLE CHEESE CORNBEEF", price: "RM 22.00" },
+            { category: "NAN SECTION", name: "NAN DOUBLE CHEESE LAMB", price: "RM 25.00" },
+            { category: "NAN SECTION", name: "NAN GARLIC", price: "RM 4.00" },
+            { category: "NAN SECTION", name: "NAN GARLIC CHEESE", price: "RM 12.00" },
+            { category: "NAN SECTION", name: "PLAIN NAN", price: "RM 2.50" },
+            { category: "LASSI SECTION", name: "PAKISTANI SWEET BANANA LASSI", price: "RM 8.00" },
+            { category: "LASSI SECTION", name: "PAKISTANI SWEET LASSI", price: "RM 6.00" },
+            { category: "LASSI SECTION", name: "PAKISTANI SWEET MANGO LASSI", price: "RM 10.00" },
+            { category: "LASSI SECTION", name: "PAKISTANI SWEET MINT LASSI", price: "RM 7.00" },
+            { category: "LASSI SECTION", name: "SALTY LASSI", price: "RM 5.00" },
+            { category: "LAKSA SARAWAK / BAKSO SECTION", name: "BAKSO AYAM", price: "RM 8.00" },
+            { category: "LAKSA SARAWAK / BAKSO SECTION", name: "BAKSO DAGING", price: "RM 11.00" },
+            { category: "LAKSA SARAWAK / BAKSO SECTION", name: "LAKSA BIASA", price: "RM 6.00" },
+            { category: "LAKSA SARAWAK / BAKSO SECTION", name: "LAKSA SPECIAL", price: "RM 10.00" },
+            { category: "FRENCH FRIES SECTION", name: "CHEESE FRIES", price: "RM 11.00" },
+            { category: "FRENCH FRIES SECTION", name: "DOUBLE CHEESE FRIES", price: "RM 15.00" },
+            { category: "FRENCH FRIES SECTION", name: "FRENCH FRIES", price: "RM 6.00" },
+            { category: "FRENCH FRIES SECTION", name: "FRENCH FRIES WITH 2 BBQ + COLA", price: "RM 27.00" },
+            { category: "FRENCH FRIES SECTION", name: "FRENCH FRIES WITH 2 CHICKEN KEBAB", price: "RM 15.00" },
+            { category: "FRENCH FRIES SECTION", name: "FRENCH FRIES WITH 3 PCS + FRIED CHICKEN + COLA", price: "RM 24.00" },
+            { category: "FRENCH FRIES SECTION", name: "FRENCH FRIES WITH 4 KEBAB", price: "RM 24.00" },
+            { category: "FRENCH FRIES SECTION", name: "FRENCH FRIES WITH BBQ+ 2 BEEF KEBAB + FRIED CHICKEN + PEPSI", price: "RM 35.00" },
+            { category: "FRENCH FRIES SECTION", name: "MASALA CHEESE FRIES", price: "RM 12.00" },
+            { category: "FRENCH FRIES SECTION", name: "MASALA DOUBLE CHEESE FRIES", price: "RM 17.00" },
+            { category: "FRENCH FRIES SECTION", name: "MASALA FRIES", price: "RM 8.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI BBQ", price: "RM 17.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI BBQ + 2 BEEF KEBAB", price: "RM 27.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI BBQ + KEBAB", price: "RM 25.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI BEEF", price: "RM 17.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI BEEF + COLA", price: "RM 18.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI CHICKEN + CHICKEN KEBAB + PEPSI", price: "RM 24.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI FISH + BEEF KEBAB + COLA", price: "RM 30.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI FISH + COLA", price: "RM 19.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI FISH + MUTTON + COLA", price: "RM 30.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI LAMB + SPRITE", price: "RM 19.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI LAMB SHANK + 2 KEBAB + BBQ + 2 DRINKS", price: "RM 55.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI LAMB SHANK + 2 KEBAB + SPRITE", price: "RM 45.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI LAMB SHANK 2 DRINKS", price: "RM 40.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI WITH BEEF KEBAB", price: "RM 18.00" },
+            { category: "BIRYANI SECTION", name: "BIRYANI WITH CHICKEN KEBAB", price: "RM 17.00" },
+            { category: "BIRYANI SECTION", name: "BRIYANI CHICKEN + BEEF KEBAB + CHICKEN KEBAB +COLA", price: "RM 32.50" },
+            { category: "BIRYANI SECTION", name: "CHICKEN BIRYANI", price: "RM 14.00" },
+            { category: "BIRYANI SECTION", name: "CHICKEN BIRYANI + BEEF KEBAB + SPRITE", price: "RM 25.00" },
+            { category: "AYAM PENYET SECTION", name: "AYAM PENYET", price: "RM 14.00" },
+            { category: "AYAM PENYET SECTION", name: "AYAM PENYET BAWAL", price: "RM 15.00" },
+            { category: "ATMOSFERAH PLATTERS SECTION", name: "10 PERSON / 10 ORANG", price: "RM 315.00" },
+            { category: "ATMOSFERAH PLATTERS SECTION", name: "12 PERSON / 12 ORANG", price: "RM 350.00" },
+            { category: "ATMOSFERAH PLATTERS SECTION", name: "2 PERSON / 2 ORANG", price: "RM 65.00" },
+            { category: "ATMOSFERAH PLATTERS SECTION", name: "4 PERSON / 4 ORANG", price: "RM 125.00" },
+            { category: "ATMOSFERAH PLATTERS SECTION", name: "6 PERSON / 6 ORANG", price: "RM 180.00" },
+            { category: "ATMOSFERAH PLATTERS SECTION", name: "8 PERSON / 8 ORANG", price: "RM 260.00" }
         ];
 
-        let currentIndex = 1;
+        const totalProducts = products.length;
+        const intervalTime = 6000; // 6 seconds per item
+
+        let currentIndex = 0; // 0-based index for array
         let timer = null;
         let progressInterval = null;
         let startTime = null;
@@ -392,46 +763,36 @@
         const prevBtn = document.getElementById('prev-btn');
         const fullscreenBtn = document.getElementById('fullscreen-btn');
 
-        // Generate dynamic realistic price based on index
-        function getPriceForIndex(index) {
-            let base = 25 + ((index * 17) % 75);
-            return `RM ${base}.00`;
-        }
-
-        // Generate descriptive product title based on index
-        function getTitleForIndex(index) {
-            const types = ["Special Platter", "Signature Meal", "Deluxe Combo", "Crispy Delight", "Ultimate Flavor", "Chef Special", "Grilled Perfection"];
-            return `Atmosferah Item #${index} ${types[index % types.length]}`;
-        }
-
         function updateDisplay(index) {
             currentIndex = index;
+            const currentItem = products[currentIndex];
+            const fileNumber = currentIndex + 1;
             
             // Update image source sequentially from 1.png to 357.png
-            imgElement.src = `${currentIndex}.png`;
-            imgElement.alt = `Product ${currentIndex}`;
+            imgElement.src = `${fileNumber}.png`;
+            imgElement.alt = `Product ${fileNumber}`;
 
-            // Update text content
-            titleElement.textContent = getTitleForIndex(currentIndex);
-            priceElement.textContent = getPriceForIndex(currentIndex);
-            counterElement.textContent = `#${currentIndex} / ${totalProducts}`;
-            catTagElement.textContent = categories[(currentIndex - 1) % categories.length];
+            // Update text content from exact product sequence
+            titleElement.textContent = currentItem.name;
+            priceElement.textContent = currentItem.price;
+            counterElement.textContent = `#${fileNumber} / ${totalProducts}`;
+            catTagElement.textContent = currentItem.category;
 
             resetTimer();
         }
 
         function nextProduct() {
             let nextIdx = currentIndex + 1;
-            if (nextIdx > totalProducts) {
-                nextIdx = 1; // Auto-restart from 1st product after 357
+            if (nextIdx >= totalProducts) {
+                nextIdx = 0; // Auto-restart from 1st product after 357
             }
             updateDisplay(nextIdx);
         }
 
         function prevProduct() {
             let prevIdx = currentIndex - 1;
-            if (prevIdx < 1) {
-                prevIdx = totalProducts;
+            if (prevIdx < 0) {
+                prevIdx = totalProducts - 1;
             }
             updateDisplay(prevIdx);
         }
@@ -479,7 +840,7 @@
         });
 
         // Initialize first run
-        updateDisplay(1);
+        updateDisplay(0);
     </script>
 </body>
 </html>
